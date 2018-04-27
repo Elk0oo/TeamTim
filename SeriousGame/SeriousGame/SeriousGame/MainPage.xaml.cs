@@ -18,7 +18,7 @@ namespace SeriousGame
 
         private void btnValiderCode_Clicked(object sender, EventArgs e)
         {
-            if (txtCodeSalle.Text.ToUpper() == "IRIS")
+            if (txtCodeSalle.Text.ToUpper() == "IRIS ")
             {
                 App.Current.MainPage = new CreationJoueur();
 
