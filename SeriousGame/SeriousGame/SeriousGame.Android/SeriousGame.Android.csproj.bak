@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>SeriousGame.Droid</RootNamespace>
     <AssemblyName>SeriousGame.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -79,14 +79,11 @@
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\SeriousGame\SeriousGame.csproj">
       <Project>{078883F1-7508-422D-8D06-5CFEC2B3FE1D}</Project>
       <Name>SeriousGame</Name>
     </ProjectReference>
   </ItemGroup>
-
-
- <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

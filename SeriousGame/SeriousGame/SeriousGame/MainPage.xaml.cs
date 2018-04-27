@@ -21,6 +21,7 @@ namespace SeriousGame
             if (txtCodeSalle.Text.ToUpper() == "IRIS")
             {
                 App.Current.MainPage = new CreationJoueur();
+
             }
         }
     }
