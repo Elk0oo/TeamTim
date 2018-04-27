@@ -12,6 +12,17 @@ namespace SeriousGame
 		public MainPage()
 		{
 			InitializeComponent();
-		}
-	}
+            btnValiderCode.Clicked += btnValiderCode_Clicked;
+
+        }
+
+        private void btnValiderCode_Clicked(object sender, EventArgs e)
+        {
+            if (txtCodeSalle.Text.ToUpper() == "IRIS ")
+            {
+                App.Current.MainPage = new CreationJoueur();
+
+            }
+        }
+    }
 }

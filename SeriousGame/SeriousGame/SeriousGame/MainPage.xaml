@@ -4,8 +4,20 @@
              xmlns:local="clr-namespace:SeriousGame"
              x:Class="SeriousGame.MainPage">
 
-	<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />
+    <StackLayout>
+        <Label Text="SERIOUS GAME" 
+           VerticalOptions="StartAndExpand" 
+           HorizontalOptions="CenterAndExpand" 
+           />
 
+        <StackLayout   VerticalOptions="StartAndExpand" 
+           HorizontalOptions="CenterAndExpand">
+        <Label Text="CODE DU JEU" 
+          />
+        <Entry x:Name="txtCodeSalle"></Entry>
+        </StackLayout>
+        <Button x:Name="btnValiderCode" BackgroundColor="Green" Text="Valider" TextColor="White"  
+          VerticalOptions="EndAndExpand"
+           HorizontalOptions="CenterAndExpand" ></Button>
+        </StackLayout>
 </ContentPage>
