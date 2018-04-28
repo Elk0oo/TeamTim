@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,9 @@ namespace SeriousGame
         Entry entryPrenom;
         Image imgUser;
         Button btnTake;
+        Button btnValidate;
         Grid grid;
+        MediaFile file;
         public CreationJoueur()
         {
             InitializeComponent();
@@ -39,8 +42,10 @@ namespace SeriousGame
             Label lblPrenom = new Label() { Text = "Prénom du joueur" };
             entryPrenom = new Entry() {};
 
-            btnTake = new Button() { Text = "Prendre une photo" };
+            btnTake = new Button() { Text = "Prendre une photo" };            
             btnTake.Clicked += BtnTake_Clicked;
+            btnValidate = new Button() { Text = "Ajouter le joueur" };
+            btnValidate.Clicked += BtnValidate_Clicked;
             imgUser = new Image();
             //stl = new StackLayout() { Children = { lblNom, entryNom, lblPrenom, entryPrenom, btnTake } };
             grid.Children.Add(lblNom, 0,0);
@@ -49,7 +54,46 @@ namespace SeriousGame
             grid.Children.Add(entryPrenom, 3,0);
             grid.Children.Add(btnTake, 0,1);
             grid.Children.Add(imgUser, 1, 1);
+            grid.Children.Add(btnValidate, 1, 2);
             this.Content = grid;
+
+        }
+
+        private void BtnValidate_Clicked(object sender, EventArgs e)
+        {
+            FtpWebRequest ftpRequest;
+            FtpWebResponse ftpResponse;
+
+            try
+            {
+                string filePath = file.Path;
+                string fileName = "test.png";
+                ftpRequest = (FtpWebRequest)FtpWebRequest.Create(new Uri("ftp://51.144.92.117/profil/" + fileName));
+                ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
+                ftpRequest.Proxy = null;
+                ftpRequest.UseBinary = true;
+                ftpRequest.Credentials = new NetworkCredential("pseudo", "Azerty@123");
+                ftpRequest.KeepAlive = false;
+
+                FileInfo ff = new FileInfo(filePath);
+                byte[] fileContents = new byte[ff.Length];
+
+                using (FileStream fr = ff.OpenRead())
+                {
+                    fr.Read(fileContents, 0, Convert.ToInt32(ff.Length));
+                }
+
+                using (Stream writer = ftpRequest.GetRequestStream())
+                {
+                    writer.Write(fileContents, 0, fileContents.Length);
+                }
+
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+            }
+            catch(Exception )
+            {
+                throw;
+            }
 
         }
 
@@ -61,7 +105,7 @@ namespace SeriousGame
                 return;
             }
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
                 PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
                 Directory = "Sample",
@@ -75,5 +119,8 @@ namespace SeriousGame
            
             
         }
+
+        
+
     }
 }
