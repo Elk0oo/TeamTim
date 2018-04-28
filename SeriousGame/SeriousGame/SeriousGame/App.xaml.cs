@@ -11,10 +11,10 @@ namespace SeriousGame
 	{
 		public App ()
 		{
-			InitializeComponent();
+		 // InitializeComponent();
 
-            MainPage = new NavigationPage(new StatEtape());
-            //MainPage = new SeriousGame.CreationJoueur();
+           
+           MainPage = new SeriousGame.MainPage();
         }
 
 		protected override void OnStart ()
