@@ -2,7 +2,9 @@
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +25,8 @@ namespace SeriousGamev2
         }
         private void btnValiderPicture_Clicked(object sender, EventArgs e)
         {
-            //appel de la méthode de reconnaissance facial
+
+
         }
 
         private async void BtnTakePicture_Clicked(object sender, EventArgs e)
@@ -45,6 +48,13 @@ namespace SeriousGamev2
                 return;
 
             imgSelfie.Source = file.Path;
+
+            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/GetIdJeu/" + txtCodeSalle.Text.ToUpper());
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:32991/api/GetImageEtape/"+imgSelfie.Source);
+            HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
+            var response = request.GetResponse();
+            var reader = new StreamReader(response.GetResponseStream());
+            string content = reader.ReadToEnd();
 
 
         }

@@ -22,6 +22,8 @@ namespace SeriousGamev2
             txtErreur.IsVisible = false;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/GetIdJeu/" + txtCodeSalle.Text.ToUpper());
+            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:32991/api/GetIdJeu/" + txtCodeSalle.Text.ToUpper());
+            request.Method = "GET";
             HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
             var response = request.GetResponse();
             var reader = new StreamReader(response.GetResponseStream());
@@ -37,12 +39,14 @@ namespace SeriousGamev2
                 App.m.uneEquipe.ID_JEU = int.Parse(content);
 
                 HttpWebRequest request3 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/AddIdEquipe/" + App.m.uneEquipe.ID_JEU);
+                //HttpWebRequest request3 = (HttpWebRequest)WebRequest.Create("http://localhost:32991/api/AddIdEquipe/" + App.m.uneEquipe.ID_JEU);
                 HttpWebResponse myResp3 = ((HttpWebResponse)(request3.GetResponse()));
                 var response3 = request3.GetResponse();
                 var reader3 = new StreamReader(response3.GetResponseStream());
                 string content3 = reader3.ReadToEnd();
 
                 HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/GetIdEquipe/" + App.m.uneEquipe.ID_JEU);
+                //HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create("http://localhost:32991/api/GetIdEquipe/" + App.m.uneEquipe.ID_JEU);
                 HttpWebResponse myResp2 = ((HttpWebResponse)(request2.GetResponse()));
                 var response2 = request2.GetResponse();
                 var reader2 = new StreamReader(response2.GetResponseStream());

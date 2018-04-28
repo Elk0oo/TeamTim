@@ -19,10 +19,9 @@ namespace SeriousGameAPI.Controllers
         // GET: api/ReconnaissanceFaciale/5
         [Route("api/RecoFacial")]
         [HttpPost]
-        public async void CheckFace()
+        public async void CheckFace(string faceId1, string faceId2)
         {
-            string faceId1 = "2ce6646f-7ea4-431d-8a3c-7986f552ab57";
-            string faceId2 = "75c85dce-97df-4d4e-b81b-f8a34212c5b0";
+
             string requestBody = "{\"faceId1\":\"" + faceId1 + "\",\"faceId2\":\"" + faceId2 + "\"}";
             HttpContent hc = new StringContent(requestBody);
             //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify");

@@ -187,6 +187,7 @@
     <Compile Include="Controllers\EquipeController.cs" />
     <Compile Include="Controllers\EtapeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IdentifyFaceController.cs" />
     <Compile Include="Controllers\LogInController.cs" />
     <Compile Include="Controllers\QuizzController.cs" />
     <Compile Include="Controllers\ReconnaissanceFacialeController.cs" />
