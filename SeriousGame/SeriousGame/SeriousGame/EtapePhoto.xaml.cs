@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Plugin.Media;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +21,21 @@ namespace SeriousGame
             btnTakePicture.Clicked += BtnTakePicture_Clicked;
 		}
 
-        private void BtnTakePicture_Clicked(object sender, EventArgs e)
+        private async void BtnTakePicture_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+
+
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            {
+                PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
+                Directory = "Sample",
+                Name = "test.jpg"
+            });
+
+            if (file == null)
+                return;
+
+            imgSelfie.Source = file.Path;
         }
     }
 }

@@ -13,6 +13,7 @@
                 HorizontalOptions="CenterAndExpand" />
 
             <Button x:Name="btnTakePicture" Text="Prendre la photo"></Button>
+            <Image x:Name="imgSelfie"></Image>
         </StackLayout>
   </ContentView.Content>
 </ContentView>
