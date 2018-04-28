@@ -14,7 +14,7 @@ namespace SeriousGame
 		  InitializeComponent();
 
             //MainPage = new NavigationPage(new StatEtape());
-            MainPage = new SeriousGame.CreationJoueur();
+            MainPage = new SeriousGame.MainPage();
         }
 
 		protected override void OnStart ()
