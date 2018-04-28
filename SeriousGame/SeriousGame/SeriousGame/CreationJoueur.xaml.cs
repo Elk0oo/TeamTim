@@ -19,23 +19,37 @@ namespace SeriousGame
         Entry entryNom;
         Entry entryPrenom;
         Image imgUser;
-        StackLayout stl;
         Button btnTake;
-
+        Grid grid;
         public CreationJoueur()
         {
             InitializeComponent();
-
+            grid = new Grid();
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(2, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             Label lblNom = new Label() { Text = "Nom du joueur" };
-            entryNom = new Entry() { Placeholder = "Entrez votre nom" };
+            entryNom = new Entry() { };
             Label lblPrenom = new Label() { Text = "Prénom du joueur" };
-            entryPrenom = new Entry() { Placeholder = "Entrez votre prénom" };
+            entryPrenom = new Entry() {};
 
             btnTake = new Button() { Text = "Prendre une photo" };
             btnTake.Clicked += BtnTake_Clicked;
-            stl = new StackLayout() { Children = { lblNom, entryNom, lblPrenom, entryPrenom, btnTake } };
-
-            this.Content = stl;
+            imgUser = new Image();
+            //stl = new StackLayout() { Children = { lblNom, entryNom, lblPrenom, entryPrenom, btnTake } };
+            grid.Children.Add(lblNom, 0,0);
+            grid.Children.Add(entryNom,1,0);
+            grid.Children.Add(lblPrenom, 2,0);
+            grid.Children.Add(entryPrenom, 3,0);
+            grid.Children.Add(btnTake, 0,1);
+            grid.Children.Add(imgUser, 1, 1);
+            this.Content = grid;
 
         }
 
@@ -56,16 +70,10 @@ namespace SeriousGame
 
             if (file == null)
                 return;
-            imgUser = new Image();
-            //await DisplayAlert("File Location", file.Path, "OK");
+            
             imgUser.Source = file.Path;
-            imgUser.Source = ImageSource.FromStream(() =>
-            {
-                var stream = file.GetStream();
-                file.Dispose();
-                return stream;
-            });
-            stl.Children.Add(imgUser);
+           
+            
         }
     }
 }
