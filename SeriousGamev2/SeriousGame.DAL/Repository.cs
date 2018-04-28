@@ -133,11 +133,13 @@ namespace SeriousGame.DAL
             etapes = _context.ETAPEs.Where(etape => etape.ID_JEU == idJeu).ToList();
             return etapes;
         }
-        public QUIZZ getQuiz(int idEpreuve)
-        {
-            QUIZZ quizz;
-            quizz = _context.QUIZZs.FirstOrDefault(q => q.ID == idEpreuve);
-            return quizz;
+        public QUIZZ getQuiz()
+        {            
+            var r = new Random();
+            
+            var quizzList = _context.QUIZZs.ToList();
+
+            return quizzList.ElementAt(r.Next(0,quizzList.Count()-1));
         }
     }
 }

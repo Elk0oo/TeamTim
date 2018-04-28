@@ -20,8 +20,7 @@ namespace SeriousGamev2
             btnDoEtape.Clicked += BtnDoEtape_Clicked;
 
             App.m.uneEquipe.ID_JEU = 1;
-            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/getEtape/" + App.m.uneEquipe.ID_JEU);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:32991/api/getEtape/" + App.m.uneEquipe.ID_JEU);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/getEtapes/" + App.m.uneEquipe.ID_JEU);
             HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
             var response = request.GetResponse();
             var reader = new StreamReader(response.GetResponseStream());

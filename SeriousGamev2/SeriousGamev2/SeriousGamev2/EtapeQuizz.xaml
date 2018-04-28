@@ -4,11 +4,11 @@
              x:Class="SeriousGamev2.EtapeQuizz">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="txtEtapeNumber" Text="Etape Numéro 1"
+            <Label x:Name="txtEtapeNumber" Text="Etape Numéro "
                 VerticalOptions="Start"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label x:Name="txtQuestion" Text="que preferez vous ?"
+            <Label x:Name="txtQuestion" Text=""
                 VerticalOptions="Center"
                 HorizontalOptions="CenterAndExpand" />
 
@@ -23,25 +23,25 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button x:Name="txtReponse1" Text="les gaufres"
+                <Button x:Name="txtReponse1" Text=""
                 Grid.Column="0"
                 Grid.Row="0"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Fill" />
 
-                <Button x:Name="txtReponse2" Text="le jambon"
+                <Button x:Name="txtReponse2" Text=""
                    Grid.Column="1"
                 Grid.Row="0"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Fill" />
 
-                <Button x:Name="txtReponse3" Text="les zoms"
+                <Button x:Name="txtReponse3" Text=""
                    Grid.Column="0"
                 Grid.Row="1"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="Fill" />
 
-                <Button x:Name="txtReponse4" Text="le micgi"
+                <Button x:Name="txtReponse4" Text=""
                    Grid.Column="1"
                 Grid.Row="1"
                 VerticalOptions="CenterAndExpand"
