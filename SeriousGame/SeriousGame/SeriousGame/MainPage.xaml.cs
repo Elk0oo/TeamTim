@@ -13,8 +13,8 @@ namespace SeriousGame
 	{
 		public MainPage()
 		{
-			InitializeComponent();
-            btnValiderCode.Clicked += btnValiderCode_Clicked;
+			//InitializeComponent();
+           // btnValiderCode.Clicked += btnValiderCode_Clicked;
 
         }
 
@@ -48,10 +48,10 @@ namespace SeriousGame
             body.Close();
 
 
-            if (txtCodeSalle.Text.ToUpper() == "IRIS")
-            {
-                App.Current.MainPage = new CreationJoueur();
-            }
+            //if (txtCodeSalle.Text.ToUpper() == "IRIS")
+            //{
+            //    App.Current.MainPage = new CreationJoueur();
+            //}
         }
     }
 }

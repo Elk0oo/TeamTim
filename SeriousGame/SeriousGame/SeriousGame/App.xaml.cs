@@ -11,7 +11,7 @@ namespace SeriousGame
 	{
 		public App ()
 		{
-			InitializeComponent();
+		 // InitializeComponent();
 
             MainPage = new SeriousGame.StatEtape();
             //MainPage = new SeriousGame.CreationJoueur();
