@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SeriousGamev2.EtapeQuizz">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="txtEtapeNumber" Text="Etape Numéro 1"
+                VerticalOptions="Start"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label x:Name="txtQuestion" Text="que preferez vous ?"
+                VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*" />
+                    <ColumnDefinition Width="10*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Button x:Name="txtReponse1" Text="les gaufres"
+                Grid.Column="0"
+                Grid.Row="0"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Fill" />
+
+                <Button x:Name="txtReponse2" Text="le jambon"
+                   Grid.Column="1"
+                Grid.Row="0"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Fill" />
+
+                <Button x:Name="txtReponse3" Text="les zoms"
+                   Grid.Column="0"
+                Grid.Row="1"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Fill" />
+
+                <Button x:Name="txtReponse4" Text="le micgi"
+                   Grid.Column="1"
+                Grid.Row="1"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Fill" />
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

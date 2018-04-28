@@ -26,15 +26,15 @@ namespace SeriousGame
         {
 
 
-           HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:54893/api/CheckCode");
-            HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
-            var response = request.GetResponse();
-            var reader = new StreamReader(response.GetResponseStream());
-            string content = reader.ReadToEnd();
+           //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:54893/api/CheckCode");
+           // HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
+           // var response = request.GetResponse();
+           // var reader = new StreamReader(response.GetResponseStream());
+           // string content = reader.ReadToEnd();
 
 
 
-            if (txtCodeSalle.Text.ToUpper() == content.ToString())
+            if (txtCodeSalle.Text.ToUpper() == "IRIS")
             {
                 App.Current.MainPage = new CreationJoueur();
             }

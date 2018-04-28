@@ -5,17 +5,16 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace SeriousGame
+namespace SeriousGamev2
 {
 	public partial class App : Application
 	{
 		public App ()
 		{
-		  InitializeComponent();
+			InitializeComponent();
 
-            //MainPage = new NavigationPage(new StatEtape());
-            MainPage = new SeriousGame.MainPage();
-        }
+			MainPage = new SeriousGamev2.MainPage();
+		}
 
 		protected override void OnStart ()
 		{

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SeriousGamev2.EtapePhoto">
+    <ContentView.Content>
+        <StackLayout>
+            <Label x:Name="txtEtapeNumber" Text="Etape Numéro 1"
+                VerticalOptions="Start"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Label x:Name="txtObjectif" Text="Prendre une photo devant la statue"
+                VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Button x:Name="btnTakePicture" Text="Prendre la photo"></Button>
+
+            <Button x:Name="btnValiderPicture" Text="Valider la photo"></Button>
+            <Image x:Name="imgSelfie"></Image>
+        </StackLayout>
+    </ContentView.Content>
+</ContentPage>
