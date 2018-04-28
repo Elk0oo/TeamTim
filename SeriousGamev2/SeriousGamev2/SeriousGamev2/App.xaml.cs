@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SeriousGame.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,17 @@ namespace SeriousGamev2
 {
 	public partial class App : Application
 	{
+       public static Manager m;
+
 		public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new SeriousGamev2.CreationJoueur();
-		}
+			MainPage = new SeriousGamev2.MainPage();
+            m = new Manager();
+       
+
+        }
 
 		protected override void OnStart ()
 		{

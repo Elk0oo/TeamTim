@@ -20,17 +20,22 @@ namespace SeriousGamev2
         {
 
 
-            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:54893/api/CheckCode");
-            //HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
-            //var response = request.GetResponse();
-            //var reader = new StreamReader(response.GetResponseStream());
-            //string content = reader.ReadToEnd();
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:54893/api/GetIdJeu/"+ txtCodeSalle.Text.ToUpper());
+            HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
+            var response = request.GetResponse();
+            var reader = new StreamReader(response.GetResponseStream());
+            string content = reader.ReadToEnd();
+
+            string codeJeu = "IRIS";
 
 
-
-            if (txtCodeSalle.Text.ToUpper() == "IRIS")
+            if (txtCodeSalle.Text.ToUpper() == codeJeu)
             {
-                App.Current.MainPage = new CreationJoueur();
+                App.m.codeJeu = codeJeu;
+                App.m.uneEquipe.IDJEU = int.Parse(content);
+                
+                  App.Current.MainPage = new CreationJoueur();
+               
             }
         }
     }

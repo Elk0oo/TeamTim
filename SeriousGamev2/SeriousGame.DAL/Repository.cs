@@ -34,5 +34,10 @@ namespace SeriousGame.DAL
             j.PHOTO = "ftp://51.144.166.162/profil/" + filename +"_"+ idPlayer+".png";
             return _context.SaveChanges();
         }
+
+        public int getIdJeu(string code)
+        {
+            return int.Parse(_context.JEUs.Where(jeu => jeu.CODE == code).ToString());
+        }
     }
 }
