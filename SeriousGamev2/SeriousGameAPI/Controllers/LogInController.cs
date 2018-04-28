@@ -22,7 +22,7 @@ namespace SeriousGameAPI.Controllers
          
         }
         [HttpGet]
-        [Route("api/GetIdJeu")]
+        [Route("api/GetIdJeu/{code}")]
         public int GetIdJeu(string code)
         {
             return r.getIdJeu(code);

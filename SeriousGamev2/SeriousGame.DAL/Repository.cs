@@ -37,7 +37,7 @@ namespace SeriousGame.DAL
 
         public int getIdJeu(string code)
         {
-            return int.Parse(_context.JEUs.Where(jeu => jeu.CODE == code).ToString());
+            return ((JEU)(_context.JEUs.FirstOrDefault(jeu => jeu.CODE == code))).ID;
         }
     }
 }
