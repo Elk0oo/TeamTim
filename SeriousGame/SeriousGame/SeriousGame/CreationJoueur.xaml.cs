@@ -63,12 +63,25 @@ namespace SeriousGame
         {
             FtpWebRequest ftpRequest;
             FtpWebResponse ftpResponse;
-
+            int idPLayer;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:54893/api/CreateJoueur/" + entryNom.Text+"/"+entryPrenom.Text);                
+                HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
+                var response = request.GetResponse();
+                var reader = new StreamReader(response.GetResponseStream());
+                string content = reader.ReadToEnd();
+                idPLayer = int.Parse(content);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
             try
             {
                 string filePath = file.Path;
-                string fileName = "test.png";
-                ftpRequest = (FtpWebRequest)FtpWebRequest.Create(new Uri("ftp://51.144.92.117/profil/" + fileName));
+                string fileName = entryNom.Text+"_"+entryPrenom.Text+"_"+idPLayer+".png";
+                ftpRequest = (FtpWebRequest)FtpWebRequest.Create(new Uri("ftp://51.144.166.162/profil/" + fileName));
                 ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
                 ftpRequest.Proxy = null;
                 ftpRequest.UseBinary = true;
@@ -89,6 +102,21 @@ namespace SeriousGame
                 }
 
                 ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                if(ftpResponse.StatusDescription == "221 Goodbye.")
+                {
+                    try
+                    {
+                        HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:54893/api/AddPhoto/" + idPLayer + "/" + entryNom.Text + "_" + entryPrenom.Text);
+                        HttpWebResponse myResp2 = ((HttpWebResponse)(request2.GetResponse()));
+                        var response = request2.GetResponse();
+                        var reader = new StreamReader(response.GetResponseStream());
+                        string content = reader.ReadToEnd();
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
             }
             catch(Exception )
             {
