@@ -13,6 +13,8 @@
                 HorizontalOptions="CenterAndExpand" />
 
             <Button x:Name="btnTakePicture" Text="Prendre la photo"></Button>
+
+            <Button x:Name="btnValiderPicture" Text="Valider la photo"></Button>
         </StackLayout>
   </ContentView.Content>
 </ContentView>
