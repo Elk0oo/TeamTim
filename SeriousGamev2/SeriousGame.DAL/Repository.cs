@@ -24,7 +24,7 @@ namespace SeriousGame.DAL
            return _context.EQUIPEs.Select(equipe => equipe.IDJEU == idJeu).Count();
         }
 
-        public int createPlayer(string nom, string prenom)
+        public int createPlayer(string nom, string prenom, int idEquipe)
         {
             _context.JOUEURs.Add(new JOUEUR() { NOM = nom, PRENOM = prenom,IDEQUIPE=idEquipe });
             _context.SaveChanges();
