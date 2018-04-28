@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using SeriousGame.DAL;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,13 +12,40 @@ namespace SeriousGameAPI.Controllers
 {
     public class QuizzController : ApiController
     {
-        [HttpGet]
-        [Route("api/CreateJoueur/{idEpreuve}")]
-        public IHttpActionResult getQuizz(int idEpreuve)
+        Repository r;
+
+        public QuizzController()
         {
-            return Ok(getQuizz(idEpreuve));
+            r = new Repository();
+        }
+        [HttpGet]
+        [Route("api/GetQuestion")]
+        public IHttpActionResult getQuizz()
+        {
+            return Ok(r.getQuiz());
         }
 
+        [HttpGet]
+        [Route("api/GetAdress/{lng}/{lat}")]
+        public string GetAdress(string lng, string lat)
+        {
+            lat = lat.Replace(",", ".");
+            lng = lng.Replace(",", ".");
+
+            string url2 = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key=AIzaSyAD0SIEaMcECMwbZeUWGvHiSDiRg59keVo";
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url2);
+            HttpWebResponse myResp = (HttpWebResponse)request.GetResponse();
+            var response = request.GetResponse();
+            var reader = new StreamReader(response.GetResponseStream());
+            var content = reader.ReadToEnd();
+            //content = content.Remove(0, 409);
+            //content = content.Remove(content.Length - 1, 1);
+            JObject location = JObject.Parse(content);
+            JToken locList = location.SelectToken("$.results[0]");
+            JToken address = locList.SelectToken("$.formatted_address");
+            //JToken city = locList.SelectToken("$.formattedCityLine");
+            return address.ToString();
+        }
         // GET: api/Quizz/5
         public string Get(int id)
         {

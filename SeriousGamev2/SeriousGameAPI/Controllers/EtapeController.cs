@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SeriousGame.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,11 +10,16 @@ namespace SeriousGameAPI.Controllers
 {
     public class EtapeController : ApiController
     {
+        Repository r;
+        public EtapeController()
+        {
+            r = new Repository();
+        }
         [HttpGet]
-        [Route("api/CreateJoueur/{idJeu}")]
+        [Route("api/getEtapes/{idJeu}")]
         public IHttpActionResult getEtapes(int idJeu)
         {
-            return Ok(getEtapes(idJeu));
+            return Ok(r.getEtapes(idJeu));
         }
 
         // GET: api/Etape/5

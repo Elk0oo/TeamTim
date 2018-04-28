@@ -93,7 +93,7 @@ namespace SeriousGamev2
                 ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
                 ftpRequest.Proxy = null;
                 ftpRequest.UseBinary = true;
-                ftpRequest.Credentials = new NetworkCredential("pseudo", "Azerty@123");
+                ftpRequest.Credentials = new NetworkCredential("TeamTim", "Azerty@2018!");
                 ftpRequest.KeepAlive = false;
 
                 FileInfo ff = new FileInfo(filePath);
