@@ -10,18 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace SeriousGame
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class StatEtape : ContentPage
+	public partial class EtapeQuizz : ContentPage
 	{
-		public StatEtape ()
+		public EtapeQuizz ()
 		{
 			InitializeComponent ();
-
-            btnDoEtape.Clicked += BtnDoEtape_Clicked;
 		}
-
-        async void BtnDoEtape_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new EtapeQuizz());
-        }
-    }
+	}
 }
