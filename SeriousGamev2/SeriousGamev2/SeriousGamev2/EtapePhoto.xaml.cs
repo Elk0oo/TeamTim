@@ -25,7 +25,74 @@ namespace SeriousGamev2
         }
         private void btnValiderPicture_Clicked(object sender, EventArgs e)
         {
+            FtpWebRequest ftpRequest;
+            FtpWebResponse ftpResponse;
+            int idPLayer;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/CreateJoueur/iwjwkt/h/" + App.m.uneEquipe.ID);
+                //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:32991/api/CreateJoueur/" + entryNom.Text + "/" + entryPrenom.Text + "/" + App.m.uneEquipe.ID);
+                HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
+                var response = request.GetResponse();
+                var reader = new StreamReader(response.GetResponseStream());
+                string content = reader.ReadToEnd();
+                idPLayer = int.Parse(content);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            try
+            {
+                string filePath = file.Path;
+                string fileName = "PhotoAValider" + idPLayer + ".png";
+                ftpRequest = (FtpWebRequest)FtpWebRequest.Create(new Uri("ftp://51.144.166.162/EtapePhoto/" + fileName));
+                ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
+                ftpRequest.Proxy = null;
+                ftpRequest.UseBinary = true;
+                ftpRequest.Credentials = new NetworkCredential("TeamTim", "Azerty@2018!");
+                ftpRequest.KeepAlive = false;
 
+                FileInfo ff = new FileInfo(filePath);
+                byte[] fileContents = new byte[ff.Length];
+
+                using (FileStream fr = ff.OpenRead())
+                {
+                    fr.Read(fileContents, 0, Convert.ToInt32(ff.Length));
+                }
+
+                using (Stream writer = ftpRequest.GetRequestStream())
+                {
+                    writer.Write(fileContents, 0, fileContents.Length);
+                }
+
+                ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
+                if (ftpResponse.StatusDescription == "221 Goodbye.")
+                {
+                 
+                    try
+                    {
+                        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/GetImageEtape/PhotoAValider" + idPLayer+"/"+ idPLayer);
+                        //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:32991/api/GetImageEtape/"+imgSelfie.Source);
+                        HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
+                        var response = request.GetResponse();
+                        var reader = new StreamReader(response.GetResponseStream());
+                        string content = reader.ReadToEnd();
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
+        
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
+           
 
         }
 
@@ -49,12 +116,7 @@ namespace SeriousGamev2
 
             imgSelfie.Source = file.Path;
 
-            //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/GetIdJeu/" + txtCodeSalle.Text.ToUpper());
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:32991/api/GetImageEtape/"+imgSelfie.Source);
-            HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
-            var response = request.GetResponse();
-            var reader = new StreamReader(response.GetResponseStream());
-            string content = reader.ReadToEnd();
+            
 
 
         }

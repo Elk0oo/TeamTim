@@ -20,10 +20,10 @@ namespace SeriousGameAPI.Controllers
 
 
         [HttpGet]
-        [Route("api/GetImageEtape/{imgEtape}")]
-        public string GetImageEtape (string imgEtape)
+        [Route("api/GetImageEtape/{imgEtape}/{idPlayer}")]
+        public string GetImageEtape (string imgEtape,int idPlayer)
         {
-            return r.GetImageEtape(imgEtape);
+            return r.GetImageEtape("ftp://51.144.166.162/EtapePhoto/"+imgEtape+".jpg",idPlayer);
         }
 
         // GET: api/IdentifyFace/5

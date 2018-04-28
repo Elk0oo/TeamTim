@@ -12,7 +12,7 @@
                 VerticalOptions="Start"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Button x:Name="btnDoEtape" Text="C'est partit !"
+            <Button x:Name="btnDoEtape" Text="C'est parti !"
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="CenterAndExpand" />
 

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -28,11 +30,12 @@ namespace SeriousGame.DAL
             return  _context.SaveChanges(); 
         }
 
-        public string GetImageEtape(string imgEtape)
+        public string GetImageEtape(string imgEtape,int idPlayer)
         {
-          
-            string imgProfil = _context.JOUEURs.Where(j => j.ID == 1).Select(jp => jp.PHOTO).ToString();
 
+            JOUEUR joueur = _context.JOUEURs.FirstOrDefault(j => j.ID == idPlayer-1);
+           
+            string imgProfil = joueur.PHOTO;
             string imgAValider = imgEtape;
 
 
@@ -49,6 +52,25 @@ namespace SeriousGame.DAL
 
         private async void checkFace(string imgProfil, string imgAValider)
         {
+
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(imgProfil);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            // This example assumes the FTP site uses anonymous logon.  
+            request.Credentials = new NetworkCredential("TeamTim", "Azerty@2018!");
+
+            FtpWebResponse responseh = (FtpWebResponse)request.GetResponse();
+
+            Stream responseStream = responseh.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
+        
+
+            reader.Close();
+            responseh.Close();
+
+
+
+
             string requestBody = "{\"url\":\"" + imgProfil + "\"}";
             HttpContent hc = new StringContent(requestBody);
             //HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false");
@@ -87,9 +109,9 @@ namespace SeriousGame.DAL
             //client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
 
             // Request parameters. A third optional parameter is "details".
-            hc.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            hc.Headers.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
-            HttpResponseMessage response2 = await client2.PostAsync("https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false", hc);
+            hc2.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            hc2.Headers.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
+            HttpResponseMessage response2 = await client2.PostAsync("https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false", hc2);
             // Assemble the URI for the REST API Call.
             string res2 = await response2.Content.ReadAsStringAsync();
 

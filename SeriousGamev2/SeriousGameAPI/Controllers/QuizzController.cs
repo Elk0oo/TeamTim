@@ -19,7 +19,7 @@ namespace SeriousGameAPI.Controllers
             r = new Repository();
         }
         [HttpGet]
-        [Route("api/GetQuestion")]
+        [Route("api/getQuizz")]
         public IHttpActionResult getQuizz()
         {
             return Ok(r.getQuiz());

@@ -28,7 +28,7 @@ namespace SeriousGamev2
         }
         async void BtnDoEtape_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new EtapePhoto();
+            App.Current.MainPage = new EtapeQuizz();
         }
     }
 }

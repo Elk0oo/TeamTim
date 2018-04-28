@@ -4,7 +4,7 @@
              x:Class="SeriousGamev2.EtapeQuizz">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="txtEtapeNumber" Text="Etape Numéro "
+            <Label x:Name="txtEtapeNumber" Text="Etape Numéro 1"
                 VerticalOptions="Start"
                 HorizontalOptions="CenterAndExpand" />
 

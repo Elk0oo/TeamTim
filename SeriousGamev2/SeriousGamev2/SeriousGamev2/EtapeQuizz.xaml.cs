@@ -41,7 +41,15 @@ namespace SeriousGamev2
             var response2 = request2.GetResponse();
             var reader2 = new StreamReader(response2.GetResponseStream());
             string content2 = reader2.ReadToEnd();
-            QUIZZ quiz = JsonConvert.DeserializeObject<QUIZZ>(content2);
+
+
+            HttpWebRequest request3 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/getQuizz");
+            HttpWebResponse myResp3 = ((HttpWebResponse)(request3.GetResponse()));
+            var response3 = request3.GetResponse();
+            var reader3 = new StreamReader(response3.GetResponseStream());
+            string content3 = reader3.ReadToEnd();
+
+            QUIZZ quiz = JsonConvert.DeserializeObject<QUIZZ>(content3);
             txtQuestion.Text = quiz.QUESTION;
             txtReponse1.Text = quiz.REPONSE1;
             txtReponse2.Text = quiz.REPONSE2;
