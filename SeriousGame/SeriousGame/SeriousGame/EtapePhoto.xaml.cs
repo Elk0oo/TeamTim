@@ -21,7 +21,14 @@ namespace SeriousGame
 			InitializeComponent ();
 
             btnTakePicture.Clicked += BtnTakePicture_Clicked;
-		}
+            btnValiderPicture.Clicked += btnValiderPicture_Clicked;
+
+        }
+
+        private void btnValiderPicture_Clicked(object sender, EventArgs e)
+        {
+            //appel de la méthode de reconnaissance facial
+        }
 
         private async void BtnTakePicture_Clicked(object sender, EventArgs e)
         {
