@@ -23,6 +23,7 @@ namespace SeriousGamev2
         Button btnValidate;
         Grid grid;
         MediaFile file;
+        Button btnNext;
 
         public CreationJoueur ()
 		{
@@ -47,6 +48,8 @@ namespace SeriousGamev2
             btnValidate = new Button() { Text = "Ajouter le joueur" };
             btnValidate.Clicked += BtnValidate_Clicked;
             imgUser = new Image();
+            btnNext = new Button() { Text = "Terminer",IsVisible = false };
+            btnNext.Clicked += BtnNext_Clicked;
             //stl = new StackLayout() { Children = { lblNom, entryNom, lblPrenom, entryPrenom, btnTake } };
             grid.Children.Add(lblNom, 0, 0);
             grid.Children.Add(entryNom, 1, 0);
@@ -55,8 +58,15 @@ namespace SeriousGamev2
             grid.Children.Add(btnTake, 0, 1);
             grid.Children.Add(imgUser, 1, 1);
             grid.Children.Add(btnValidate, 1, 2);
+            grid.Children.Add(btnNext, 4, 5);
             this.Content = grid;
         }
+
+        private void BtnNext_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new StatEtape();
+        }
+
         private void BtnValidate_Clicked(object sender, EventArgs e)
         {
             FtpWebRequest ftpRequest;
@@ -64,7 +74,7 @@ namespace SeriousGamev2
             int idPLayer;
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/CreateJoueur/" + entryNom.Text + "/" + entryPrenom.Text);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/CreateJoueur/" + entryNom.Text + "/" + entryPrenom.Text+"/"+App.m.uneEquipe.ID);
                 HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
                 var response = request.GetResponse();
                 var reader = new StreamReader(response.GetResponseStream());
@@ -114,6 +124,10 @@ namespace SeriousGamev2
                     {
                         throw;
                     }
+                }
+                if(btnNext.IsVisible == false)
+                {
+                    btnNext.IsVisible = true;
                 }
             }
             catch (Exception)

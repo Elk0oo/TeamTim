@@ -19,9 +19,9 @@ namespace SeriousGame.DAL
             _context.Configuration.LazyLoadingEnabled = false;
         }
 
-        public int createPlayer(string nom, string prenom)
+        public int createPlayer(string nom, string prenom,int idEquipe)
         {
-            _context.JOUEURs.Add(new JOUEUR() { NOM = nom, PRENOM = prenom });
+            _context.JOUEURs.Add(new JOUEUR() { NOM = nom, PRENOM = prenom,IDEQUIPE=idEquipe });
             _context.SaveChanges();
 
             var result = _context.JOUEURs.Max(je => je.ID);
