@@ -31,7 +31,7 @@ namespace SeriousGame.DAL
         {
 
             JOUEUR j = (JOUEUR)(_context.JOUEURs.FirstOrDefault(joueur => joueur.ID == idPlayer));
-            j.PHOTO = "ftp://51.144.166.162/profil/" + filename + ".png";
+            j.PHOTO = "ftp://51.144.166.162/profil/" + filename +"_"+ idPlayer+".png";
             return _context.SaveChanges();
         }
     }

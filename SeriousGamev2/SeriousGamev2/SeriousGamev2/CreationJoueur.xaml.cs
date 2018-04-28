@@ -64,7 +64,7 @@ namespace SeriousGamev2
             int idPLayer;
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:54893/api/CreateJoueur/" + entryNom.Text + "/" + entryPrenom.Text);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/CreateJoueur/" + entryNom.Text + "/" + entryPrenom.Text);
                 HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
                 var response = request.GetResponse();
                 var reader = new StreamReader(response.GetResponseStream());
@@ -104,7 +104,7 @@ namespace SeriousGamev2
                 {
                     try
                     {
-                        HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:54893/api/AddPhoto/" + idPLayer + "/" + entryNom.Text + "_" + entryPrenom.Text);
+                        HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/AddPhoto/" + idPLayer + "/" + entryNom.Text + "_" + entryPrenom.Text);
                         HttpWebResponse myResp2 = ((HttpWebResponse)(request2.GetResponse()));
                         var response = request2.GetResponse();
                         var reader = new StreamReader(response.GetResponseStream());
