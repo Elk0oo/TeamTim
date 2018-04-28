@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +18,13 @@ namespace SeriousGamev2
 		{
 			InitializeComponent ();
             btnDoEtape.Clicked += BtnDoEtape_Clicked;
+
+            App.m.uneEquipe.IDJEU = 1;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/getEtape/" + App.m.uneEquipe.IDJEU);
+            HttpWebResponse myResp = ((HttpWebResponse)(request.GetResponse()));
+            var response = request.GetResponse();
+            var reader = new StreamReader(response.GetResponseStream());
+            var content = reader.ReadToEnd();
         }
         async void BtnDoEtape_Clicked(object sender, EventArgs e)
         {

@@ -50,5 +50,18 @@ namespace SeriousGame.DAL
         {
             return ((JEU)(_context.JEUs.FirstOrDefault(jeu => jeu.CODE == code))).ID;
         }
+
+        public List<ETAPE> getEtapes(int idJeu)
+        {
+            List<ETAPE> etapes = new List<ETAPE>();
+            etapes = _context.ETAPEs.Where(etape => etape.ID_JEU == idJeu).ToList();
+            return etapes;
+        }
+        public QUIZZ getQuiz(int idEpreuve)
+        {
+            QUIZZ quizz;
+            quizz = _context.QUIZZs.FirstOrDefault(q => q.ID == idEpreuve);
+            return quizz;
+        }
     }
 }
