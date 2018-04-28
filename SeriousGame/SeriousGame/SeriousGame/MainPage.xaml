@@ -12,12 +12,12 @@
 
         <StackLayout   VerticalOptions="StartAndExpand" 
            HorizontalOptions="CenterAndExpand">
-        <Label Text="CODE DU JEU" 
+            <Label Text="CODE DU JEU" 
           />
-        <Entry x:Name="txtCodeSalle"></Entry>
+            <Entry x:Name="txtCodeSalle"></Entry>
         </StackLayout>
         <Button x:Name="btnValiderCode" BackgroundColor="Green" Text="Valider" TextColor="White"  
           VerticalOptions="EndAndExpand"
            HorizontalOptions="CenterAndExpand" ></Button>
-        </StackLayout>
+    </StackLayout>
 </ContentPage>
