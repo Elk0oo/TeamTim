@@ -19,7 +19,12 @@ namespace SeriousGame.DAL
             _context.Configuration.LazyLoadingEnabled = false;
         }
 
-        public int createPlayer(string nom, string prenom,int idEquipe)
+        public int getIdEquipe(int idJeu)
+        {
+           return _context.EQUIPEs.Select(equipe => equipe.IDJEU == idJeu).Count();
+        }
+
+        public int createPlayer(string nom, string prenom)
         {
             _context.JOUEURs.Add(new JOUEUR() { NOM = nom, PRENOM = prenom,IDEQUIPE=idEquipe });
             _context.SaveChanges();
