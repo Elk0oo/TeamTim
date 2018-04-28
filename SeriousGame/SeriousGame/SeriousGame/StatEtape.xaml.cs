@@ -21,7 +21,7 @@ namespace SeriousGame
 
         async void BtnDoEtape_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EtapeQuizz());
+            App.Current.MainPage = new EtapePhoto();
         }
     }
 }

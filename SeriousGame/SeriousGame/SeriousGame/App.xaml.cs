@@ -13,7 +13,7 @@ namespace SeriousGame
 		{
 			InitializeComponent();
 
-            MainPage = new SeriousGame.CreationJoueur();
+            MainPage = new SeriousGame.StatEtape();
             //MainPage = new SeriousGame.CreationJoueur();
         }
 

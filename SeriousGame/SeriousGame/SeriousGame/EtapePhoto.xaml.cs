@@ -1,4 +1,5 @@
 ﻿using Plugin.Media;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,9 +13,10 @@ using Xamarin.Forms.Xaml;
 namespace SeriousGame
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EtapePhoto : ContentView
+	public partial class EtapePhoto : ContentPage
 	{
-		public EtapePhoto ()
+        MediaFile file;
+        public EtapePhoto ()
 		{
 			InitializeComponent ();
 
@@ -23,9 +25,13 @@ namespace SeriousGame
 
         private async void BtnTakePicture_Clicked(object sender, EventArgs e)
         {
+            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+            {
+                await DisplayAlert("No Camera", ":( No camera avaialble.", "OK");
+                return;
+            }
 
-
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+            file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
                 PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
                 Directory = "Sample",
@@ -36,6 +42,8 @@ namespace SeriousGame
                 return;
 
             imgSelfie.Source = file.Path;
+
+
         }
     }
 }
