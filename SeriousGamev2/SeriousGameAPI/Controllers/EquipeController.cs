@@ -17,10 +17,17 @@ namespace SeriousGameAPI.Controllers
         }
         // GET: api/Equipe
         [HttpGet]
-        [Route("api/GetIdJeu/{idJeu}")]
+        [Route("api/AddIdEquipe/{idJeu}")]
+        public int AddIdEquipe(int idJeu)
+        {
+            return r.AddIdEquipe(idJeu);
+        }
+
+        [HttpGet]
+        [Route("api/GetIdEquipe/{idJeu}")]
         public int GetIdEquipe(int idJeu)
         {
-            return r.getIdEquipe(idJeu);
+            return r.GetIdEquipe(idJeu);
         }
 
         // GET: api/Equipe/5

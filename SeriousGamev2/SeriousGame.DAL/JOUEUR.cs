@@ -18,6 +18,6 @@ namespace SeriousGame.DAL
         public string NOM { get; set; }
         public string PRENOM { get; set; }
         public string PHOTO { get; set; }
-        public Nullable<int> IDEQUIPE { get; set; }
+        public Nullable<int> ID_EQUIPE { get; set; }
     }
 }

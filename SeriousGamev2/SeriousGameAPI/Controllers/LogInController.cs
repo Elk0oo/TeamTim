@@ -28,6 +28,8 @@ namespace SeriousGameAPI.Controllers
             return r.getIdJeu(code);
         }
 
+
+
         // POST: api/LogIn
         public void Post([FromBody]string value)
         {

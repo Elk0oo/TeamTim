@@ -19,14 +19,20 @@ namespace SeriousGame.DAL
             _context.Configuration.LazyLoadingEnabled = false;
         }
 
-        public int getIdEquipe(int idJeu)
+        public int AddIdEquipe(int idJeu)
         {
-           return _context.EQUIPEs.Select(equipe => equipe.IDJEU == idJeu).Count();
+            _context.EQUIPEs.Add(new EQUIPE() { ID_JEU = idJeu});
+            return  _context.SaveChanges(); 
         }
 
-        public int createPlayer(string nom, string prenom)
+        public int GetIdEquipe(int idJeu)
         {
-            _context.JOUEURs.Add(new JOUEUR() { NOM = nom, PRENOM = prenom,IDEQUIPE=idEquipe });
+            return _context.EQUIPEs.Select(eq => eq.ID_JEU == idJeu).Count();
+        }
+
+        public int createPlayer(string nom, string prenom, int idEquipe)
+        {
+            _context.JOUEURs.Add(new JOUEUR() { NOM = nom, PRENOM = prenom,ID_EQUIPE=idEquipe });
             _context.SaveChanges();
 
             var result = _context.JOUEURs.Max(je => je.ID);

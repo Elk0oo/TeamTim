@@ -14,9 +14,18 @@ namespace SeriousGame.DAL
     
     public partial class JEU
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public JEU()
+        {
+            this.EQUIPEs = new HashSet<EQUIPE>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> NB_ETAPE { get; set; }
         public string CODE { get; set; }
         public Nullable<bool> ENCOURS { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EQUIPE> EQUIPEs { get; set; }
     }
 }

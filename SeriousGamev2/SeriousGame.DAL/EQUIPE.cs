@@ -23,9 +23,10 @@ namespace SeriousGame.DAL
         public int ID { get; set; }
         public string NOM { get; set; }
         public Nullable<int> NBJOUEURS { get; set; }
-        public Nullable<int> IDJEU { get; set; }
+        public Nullable<int> ID_JEU { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<STATISTIQUE> STATISTIQUEs { get; set; }
+        public virtual JEU JEU { get; set; }
     }
 }

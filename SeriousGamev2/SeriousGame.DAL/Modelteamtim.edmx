@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="teamtimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="teamtimModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CLASSEMENT">
           <Key>
             <PropertyRef Name="ID" />
@@ -21,7 +21,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NOM" Type="varchar" MaxLength="50" />
           <Property Name="NBJOUEURS" Type="int" />
-          <Property Name="IDJEU" Type="int" />
+          <Property Name="ID_JEU" Type="int" />
         </EntityType>
         <EntityType Name="ETAPE">
           <Key>
@@ -50,13 +50,13 @@
           <Property Name="NOM" Type="varchar" MaxLength="50" />
           <Property Name="PRENOM" Type="varchar" MaxLength="50" />
           <Property Name="PHOTO" Type="varchar" MaxLength="250" />
-          <Property Name="IDEQUIPE" Type="int" />
+          <Property Name="ID_EQUIPE" Type="int" />
         </EntityType>
         <EntityType Name="PHOTO">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CONSIGNE" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="QUIZZ">
@@ -90,6 +90,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK__EQUIPE__ID_JEU__628FA481">
+          <End Role="JEU" Type="Self.JEU" Multiplicity="0..1" />
+          <End Role="EQUIPE" Type="Self.EQUIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JEU">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EQUIPE">
+              <PropertyRef Name="ID_JEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__STATISTIQ__ID_EQ__52593CB8">
           <End Role="EQUIPE" Type="Self.EQUIPE" Multiplicity="0..1" />
           <End Role="STATISTIQUE" Type="Self.STATISTIQUE" Multiplicity="*" />
@@ -112,13 +124,16 @@
           <EntitySet Name="QUIZZ" EntityType="Self.QUIZZ" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STATISTIQUE" EntityType="Self.STATISTIQUE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__EQUIPE__ID_JEU__628FA481" Association="Self.FK__EQUIPE__ID_JEU__628FA481">
+            <End Role="JEU" EntitySet="JEU" />
+            <End Role="EQUIPE" EntitySet="EQUIPE" />
+          </AssociationSet>
           <AssociationSet Name="FK__STATISTIQ__ID_EQ__52593CB8" Association="Self.FK__STATISTIQ__ID_EQ__52593CB8">
             <End Role="EQUIPE" EntitySet="EQUIPE" />
             <End Role="STATISTIQUE" EntitySet="STATISTIQUE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="teamtimModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -138,8 +153,9 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NBJOUEURS" Type="Int32" />
-          <Property Name="IDJEU" Type="Int32" />
           <NavigationProperty Name="STATISTIQUEs" Relationship="Self.FK__STATISTIQ__ID_EQ__52593CB8" FromRole="EQUIPE" ToRole="STATISTIQUE" />
+          <Property Name="ID_JEU" Type="Int32" />
+          <NavigationProperty Name="JEU" Relationship="teamtimModel.FK__EQUIPE__ID_JEU__628FA481" FromRole="EQUIPE" ToRole="JEU" />
         </EntityType>
         <EntityType Name="ETAPE">
           <Key>
@@ -159,6 +175,7 @@
           <Property Name="NB_ETAPE" Type="Int32" />
           <Property Name="CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ENCOURS" Type="Boolean" />
+          <NavigationProperty Name="EQUIPEs" Relationship="teamtimModel.FK__EQUIPE__ID_JEU__628FA481" FromRole="JEU" ToRole="EQUIPE" />
         </EntityType>
         <EntityType Name="JOUEUR">
           <Key>
@@ -168,14 +185,14 @@
           <Property Name="NOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PRENOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PHOTO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="IDEQUIPE" Type="Int32" />
+          <Property Name="ID_EQUIPE" Type="Int32" />
         </EntityType>
         <EntityType Name="PHOTO">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CONSIGNE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="QUIZZ">
           <Key>
@@ -235,7 +252,23 @@
             <End Role="EQUIPE" EntitySet="EQUIPEs" />
             <End Role="STATISTIQUE" EntitySet="STATISTIQUEs" />
           </AssociationSet>
+          <AssociationSet Name="FK__EQUIPE__ID_JEU__628FA481" Association="teamtimModel.FK__EQUIPE__ID_JEU__628FA481">
+            <End Role="JEU" EntitySet="JEUs" />
+            <End Role="EQUIPE" EntitySet="EQUIPEs" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__EQUIPE__ID_JEU__628FA481">
+          <End Type="teamtimModel.JEU" Role="JEU" Multiplicity="0..1" />
+          <End Type="teamtimModel.EQUIPE" Role="EQUIPE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JEU">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EQUIPE">
+              <PropertyRef Name="ID_JEU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -255,10 +288,10 @@
           <EntitySetMapping Name="EQUIPEs">
             <EntityTypeMapping TypeName="teamtimModel.EQUIPE">
               <MappingFragment StoreEntitySet="EQUIPE">
+                <ScalarProperty Name="ID_JEU" ColumnName="ID_JEU" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NOM" ColumnName="NOM" />
                 <ScalarProperty Name="NBJOUEURS" ColumnName="NBJOUEURS" />
-                <ScalarProperty Name="IDJEU" ColumnName="IDJEU" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -286,18 +319,18 @@
           <EntitySetMapping Name="JOUEURs">
             <EntityTypeMapping TypeName="teamtimModel.JOUEUR">
               <MappingFragment StoreEntitySet="JOUEUR">
+                <ScalarProperty Name="ID_EQUIPE" ColumnName="ID_EQUIPE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="NOM" ColumnName="NOM" />
                 <ScalarProperty Name="PRENOM" ColumnName="PRENOM" />
                 <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
-                <ScalarProperty Name="IDEQUIPE" ColumnName="IDEQUIPE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Photos">
             <EntityTypeMapping TypeName="teamtimModel.PHOTO">
               <MappingFragment StoreEntitySet="PHOTO">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CONSIGNE" ColumnName="CONSIGNE" />
               </MappingFragment>
             </EntityTypeMapping>

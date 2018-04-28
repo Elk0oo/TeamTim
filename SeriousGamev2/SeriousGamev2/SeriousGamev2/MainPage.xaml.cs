@@ -34,13 +34,23 @@ namespace SeriousGamev2
             {
                 App.m.codeJeu = codeJeu;
                 App.m.uneEquipe = new SeriousGame.DAL.EQUIPE();
-                App.m.uneEquipe.IDJEU = int.Parse(content);
-               
-                HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/GetIdTeam/"+ App.m.uneEquipe.IDJEU);
-                HttpWebResponse myResp2 = ((HttpWebResponse)(request.GetResponse()));
-                var response2 = request.GetResponse();
-                var reader2 = new StreamReader(response.GetResponseStream());
+                App.m.uneEquipe.ID_JEU = int.Parse(content);
+
+                HttpWebRequest request3 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/AddIdEquipe/" + App.m.uneEquipe.ID_JEU);
+                HttpWebResponse myResp3 = ((HttpWebResponse)(request3.GetResponse()));
+                var response3 = request3.GetResponse();
+                var reader3 = new StreamReader(response3.GetResponseStream());
+                string content3 = reader3.ReadToEnd();
+
+                HttpWebRequest request2 = (HttpWebRequest)WebRequest.Create("http://10.3.0.46:32991/api/GetIdEquipe/" + App.m.uneEquipe.ID_JEU);
+                HttpWebResponse myResp2 = ((HttpWebResponse)(request2.GetResponse()));
+                var response2 = request2.GetResponse();
+                var reader2 = new StreamReader(response2.GetResponseStream());
                 string content2 = reader2.ReadToEnd();
+
+                App.m.uneEquipe.ID = int.Parse(content2);
+
+               
 
 
                 App.Current.MainPage = new CreationJoueur();

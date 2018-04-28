@@ -14,7 +14,7 @@ namespace SeriousGame.DAL
     
     public partial class PHOTO
     {
-        public int id { get; set; }
         public string CONSIGNE { get; set; }
+        public int ID { get; set; }
     }
 }

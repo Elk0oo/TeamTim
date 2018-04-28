@@ -28,7 +28,7 @@ namespace SeriousGameAPI.Controllers
         }
 
         [HttpGet]
-        [Route("api/CreateJoueur/{nom}/{prenom}/idEquipe")]
+        [Route("api/CreateJoueur/{nom}/{prenom}/{idEquipe}")]
         public IHttpActionResult CreateJoueur(string nom, string prenom,int idEquipe)
         {
             return Ok(r.createPlayer(nom, prenom,idEquipe));
