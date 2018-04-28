@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{563648AB-91F5-40B5-B55B-10BAF7979922}</ProjectGuid>
+    <ProjectGuid>59a0576b-1847-4ea6-b4a7-089c1696211e</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SeriousGame.DAL</RootNamespace>
