@@ -36,9 +36,6 @@ namespace SeriousGame.DAL
             return _context.SaveChanges();
         }
 
-        public string getCodeJeu()
-        {
-            return _context.JEU.FirstOrDefault(jeu => jeu.CODE).ToString();
-        }
+     
     }
 }
