@@ -33,8 +33,9 @@ namespace SeriousGameAPI.Controllers
             //WebClient wc = new WebClient();
 
             string subscriptionKey = "112d5a31c0724a0e9f459dd2a2d76d53";
+          
 
-
+           
             HttpClient client = new HttpClient();
 
             // Request headers.
@@ -46,7 +47,7 @@ namespace SeriousGameAPI.Controllers
             HttpResponseMessage response = await client.PostAsync("https://westcentralus.api.cognitive.microsoft.com/face/v1.0/verify", hc);
             // Assemble the URI for the REST API Call.
             string res = await response.Content.ReadAsStringAsync();
-
+            
                
         }
 

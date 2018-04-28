@@ -10,10 +10,12 @@ namespace SeriousGameAPI.Controllers
 {
     public class CreationJoueurController : ApiController
     {
+
+      
         Repository r;
         public CreationJoueurController()
         {
-            r = new Repository();
+           r = new Repository();
         }
         // GET: api/CreationJoueur
         public IEnumerable<string> Get()
@@ -27,12 +29,12 @@ namespace SeriousGameAPI.Controllers
             return "value";
         }
 
-        [HttpGet]
-        [Route("api/CreateJoueur/{nom}/{prenom}")]
-        public IHttpActionResult CreateJoueur(string nom, string prenom)
-        {
-           return Ok(r.createPlayer(nom, prenom));
-        }
+        //[HttpGet]
+        //[Route("api/CreateJoueur/{nom}/{prenom}")]
+        //public IHttpActionResult CreateJoueur(string nom, string prenom)
+        //{
+        //   return Ok(r.createPlayer(nom, prenom));
+        //}
 
         [HttpGet]
         [Route("api/AddPhoto/{idPlayer}/{urlPhoto}")]
