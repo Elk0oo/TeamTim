@@ -13,7 +13,7 @@ namespace SeriousGamev2
 		{
 			InitializeComponent();
 
-			MainPage = new SeriousGamev2.MainPage();
+			MainPage = new SeriousGamev2.CreationJoueur();
 		}
 
 		protected override void OnStart ()
